@@ -28,22 +28,22 @@ void creaplt(char *);//Crea a partir de un fichero, un plt
 void creaplt_proms(char *,double );//Crea a partir de un fichero, un plt de los promedios de T
 void creaplt_proms_log(char *,double );//Crea a partir de un fichero, un plt de los promedios de log T
 void creaplt_fluctuaciones(char *,double );//Crea a partir de un fichero, un plt de los promedios de log T
-void creaplt_probabilidades_log(char *,double,double ,char *,double ,double);//Para ver la distribuciÛn de probabilidad para 2 valores dados de <-ln T>
-void creaplt_probabilidades_T(char *,double ,double, char *,double, double);//Para ver la distribuciÛn de probabilidad para 2 valores dados de <T> y con los dos <-ln T> para esa L
-void creaplt_probabilidades_T_paraesoslog(char *,double ,char *,double );//Para ver la distribuciÛn de probabilidad para los 2 valores  de <T> dados para los dos <-ln T> anteriores
-void creaplt_probabilidades_log_paraesosT(char *,double ,double,char *,double,double );//Para ver la distribuciÛn de probabilidad   para los 2 valores  de <-ln T> dados para los dos <T> anteriores
+void creaplt_probabilidades_log(char *,double,double ,char *,double ,double);//Para ver la distribuci√≥n de probabilidad para 2 valores dados de <-ln T>
+void creaplt_probabilidades_T(char *,double ,double, char *,double, double);//Para ver la distribuci√≥n de probabilidad para 2 valores dados de <T> y con los dos <-ln T> para esa L
+void creaplt_probabilidades_T_paraesoslog(char *,double ,char *,double );//Para ver la distribuci√≥n de probabilidad para los 2 valores  de <T> dados para los dos <-ln T> anteriores
+void creaplt_probabilidades_log_paraesosT(char *,double ,double,char *,double,double );//Para ver la distribuci√≥n de probabilidad   para los 2 valores  de <-ln T> dados para los dos <T> anteriores
 S_matrix compose(S_matrix, S_matrix);//Compone 2 matrices
-S_matrix translate (S_matrix, double, double);//Traslada una matriz S una distancia d, se usa para considerar la propagaciÛn de la onda
+S_matrix translate (S_matrix, double, double);//Traslada una matriz S una distancia d, se usa para considerar la propagaci√≥n de la onda
 S_matrix barrier(double , double , double );//Devuelve la matriz S_matrix correspondiente a una barrera de anchura a y altura V
 int check(S_matrix);//Comprueba que S*S^T =I
 void Histograma(double *, double *,int ,int ,double *,double *, double *);
 
-///Generador de n˙meros reales aleatorios de Parisi-Rapuano
+///Generador de n√∫meros reales aleatorios de Parisi-Rapuano
 #define NormRANu (2.3283063671E-10F)
 unsigned int irr[256];
 unsigned int ir1;
 unsigned char ind_ran,ig1,ig2,ig3;
-extern float random(void); //al final del cÛdigo se desarrollan
+extern float random(void); //al final del c√≥digo se desarrollan
 extern void ini_ran(int);
 
 double random_Levy_general(double);
@@ -51,42 +51,42 @@ double random_Levy_general(double);
 int main (){
    // char argv[]="Datos.txt";
     ini_ran(time(NULL));//La semilla cambia con la hora
-    int i,j,N,M;//N˙mero total de barreras
+    int i,j,N,M;//N√∫mero total de barreras
     double escalamiento,
-              k,    //Componente x del vector de ondas en el vacÌo
+              k,    //Componente x del vector de ondas en el vac√≠o
               k_y,  //Componente y del vector de ondas
-              E,    //EnergÌa de la onda
-              E_0,  //EnergÌa inicial
+              E,    //Energ√≠a de la onda
+              E_0,  //Energ√≠a inicial
               V,    //Altura de las barreras
               a,    // anchura aleatoria de las barreras
               d,    // distancia entre barreras aleatoria
               L,    //Longitud total del sistema (va variando)
               L_0,  //Longitud inicial del sistema
               deltaL, //Incremento en la longitud del sistema para ver la dependencia con esta
-              deltaE,  //Incremento en la energÌa incidente para ver la dependencia con esta
-              theta_i,//¡NGULO DE INCIDENCIA EN EL SISTEMA
-              theta_j,//¡NGULO INCIDENTE EN LA BARRERA J, NO LO CONSIDERAMOS DE MOMENTO
-              theta_e,//¡NGULO DE SALIDA
+              deltaE,  //Incremento en la energ√≠a incidente para ver la dependencia con esta
+              theta_i,//√ÅNGULO DE INCIDENCIA EN EL SISTEMA
+              theta_j,//√ÅNGULO INCIDENTE EN LA BARRERA J, NO LO CONSIDERAMOS DE MOMENTO
+              theta_e,//√ÅNGULO DE SALIDA
               T,    //TRANSMITANCIA
-              fluctuacion, //DispersiÛn de T
+              fluctuacion, //Dispersi√≥n de T
               contador_log_transm,contador_transm,contador_transmcuadrada,promediolog,logsmall,logbig,promedioT,promedioTcuadrada,Tsmall,Tbig,Tparalogsmall,TparalogBig,logparaTBig,logparaTSmall,
               minimo,maximo,delta,//Valores para el histograma
               LparalogSmallbuscado,LparalogBigbuscado,LparaTSmallBuscado,LparaTbigbuscado,//Valores de longitud del sistema para las T y log T en los que se quiere incidir
               LogparaTBig,LogparaTSmall,
-              promlogTsmall,promlogTbig,promTbig,promTsmall;//VALORES ENTORNO A LOS QUE BUSCAR PARA SACAR LOS GR¡FICOS DE P(-log T) y P(T)
+              promlogTsmall,promlogTbig,promTbig,promTsmall;//VALORES ENTORNO A LOS QUE BUSCAR PARA SACAR LOS GR√ÅFICOS DE P(-log T) y P(T)
     S_matrix S;//Sistema total
     FILE *datos;//archivo de salida
     FILE *graf;//PLT DE SALIDA
     FILE *promedios,*promedios_log,*FLUCTUACIONES;//promedios para misma L
-    FILE *histlogsmall,*histTparalogsmall,*histlogbig,*histTparalogBig,*histlogparaTSmall,*histlogparaTBig;//2 columnas de tamaÒo M con los logaritmos guardados
-     FILE *histTsmall,*histTbig;//2 columnas de tamaÒo M con los logaritmos guardados
+    FILE *histlogsmall,*histTparalogsmall,*histlogbig,*histTparalogBig,*histlogparaTSmall,*histlogparaTBig;//2 columnas de tama√±o M con los logaritmos guardados
+     FILE *histTsmall,*histTbig;//2 columnas de tama√±o M con los logaritmos guardados
      FILE *transmisiones_TBig,*transmisiones_TSmall,*logs_para_TSmall,*logs_para_TBig;//Anota las transmisiones y logs  para cuando el <T> es el buscado
     FILE *logs_Big,*logs_Small,*T_para_logSmall,*T_para_logBig;//Anota las transmisiones y logs  para cuando el <log T> es el buscado
     FILE *numBars;
 //FIN DE DECLARACIONES INICIALES
    readata(&N, &M, &E, &V, &L,&theta_i, "Datos.txt");
     printf("Semilla=%d \n eps=%lf \n Datos:M=%i\t E=%lf\t V=%lf\t L=%lf\n",time(NULL),eps,M,E,V,L);
-         double logaritmos[M],transmisiones[M], Hist[N_Intervalos],barreras[M];//Para almacenar log T y T para un solo L y los histogramas que se plotear·n
+         double logaritmos[M],transmisiones[M], Hist[N_Intervalos],barreras[M];//Para almacenar log T y T para un solo L y los histogramas que se plotear√°n
     k_y=sqrt(2*me*E)*sin(theta_i)/hbar;
     k=sqrt(2*me*E-hbar*hbar*k_y*k_y)/(hbar);
      printf("k=%lf\n",k);
@@ -126,7 +126,7 @@ int main (){
             //  printf("r=%lf \t t=%lf \t r2=%lf \n",S.r1, S.t, S.r2);
               if((d+a)>L){
                     /*
-                    Si se supera la longitud del sistema, en vez de componer S con la nueva barrera, se rellena con vacÌo el espacio entre d y L
+                    Si se supera la longitud del sistema, en vez de componer S con la nueva barrera, se rellena con vac√≠o el espacio entre d y L
                     y salimos del bucle para ver si es unitaria
                     */
                     S=compose(S,translate(barrier(L-d,0.0,k),L,k));
@@ -294,7 +294,7 @@ int main (){
     #endif // SACAR_PROBABILIDADES
         printf("\n done dependencia con L");
 #endif // CAMBIAR_L
-/**DEPENDENCIA CON LA ENERGÕA INCIDENTE**/
+/**DEPENDENCIA CON LA ENERG√çA INCIDENTE**/
 #ifdef CAMBIAR_E
 L=L_0;
     for(int iter=0;iter<numE;iter++){
@@ -315,7 +315,7 @@ L=L_0;
             //  printf("r=%lf \t t=%lf \t r2=%lf \n",S.r1, S.t, S.r2);
               if((d+a)>L){
                     /*
-                    Si se supera la longitud del sistema, en vez de componer S con la nueva barrera, se rellena con vacÌo el espacio entre d y L
+                    Si se supera la longitud del sistema, en vez de componer S con la nueva barrera, se rellena con vac√≠o el espacio entre d y L
                     y salimos del bucle para ver si es unitaria
                     */
                     S=compose(S,translate(barrier(L-d,0.0,k),L,k));
@@ -486,7 +486,7 @@ void ini_ran(int SEMILLA){ //Parisi-Rapuano, NO TOCAR
     ind_ran=ig1=ig2=ig3=0;
 }
 
-float random(void){ //N∫ aleatorio entre [0,1)
+float random(void){ //N¬∫ aleatorio entre [0,1)
     float r;
     ig1=ind_ran-24;
     ig2=ind_ran-55;
@@ -543,13 +543,13 @@ fclose(graf);
 void creaplt_probabilidades_log(char *n_arch1,double logBig,double LBig,char *n_arch2,double logSmall, double Lsmall){
     FILE *graf1;
     graf1=fopen("distribucion_logs_Big_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad del logaritmo de la transmitividad para L=%lf y para <ln T>=%lf' \n",LBig,logBig);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad del logaritmo de la transmitividad para L=%lf y para <ln T>=%lf' \n",LBig,logBig);
     fprintf(graf1, "set xlabel 'ln T' \n");
     fprintf(graf1, "set ylabel 'P(ln T)' \n");
     fprintf(graf1, "plot '%s' u 1:2 w boxes\n", n_arch1);
-//Cambio a la distribuciÛn de logs small
+//Cambio a la distribuci√≥n de logs small
  graf1=fopen("distribucion_logs_small_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad del logaritmo de la transmitividad para L=%lf para <ln T>=%lf' \n",Lsmall,logSmall);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad del logaritmo de la transmitividad para L=%lf para <ln T>=%lf' \n",Lsmall,logSmall);
     fprintf(graf1, "set xlabel 'ln T' \n");
     fprintf(graf1, "set ylabel 'P(ln T)' \n");
     fprintf(graf1, "plot '%s' u 1:2 w boxes\n", n_arch2);
@@ -559,12 +559,12 @@ fclose(graf1);
 void creaplt_probabilidades_log_paraesosT(char *n_arch1,double logBig,double LBig,char *n_arch2,double logSmall, double Lsmall ){
     FILE *graf1;
     graf1=fopen("distribucion_logs_para_TBig_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad del logaritmo de la transmitividad para L=%lf para <-ln T>=%lf' \n",LBig,logBig);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad del logaritmo de la transmitividad para L=%lf para <-ln T>=%lf' \n",LBig,logBig);
     fprintf(graf1, "set xlabel 'ln T' \n");
     fprintf(graf1, "set ylabel 'P(ln T)' \n");
     fprintf(graf1, "plot '%s' u 1:2 w boxes\n", n_arch1);
  graf1=fopen("distribucion_logs_para_Tsmall_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad del logaritmo de la transmitividad respecto a L=%lf para <-ln T>=%lf' \n",Lsmall,logSmall);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad del logaritmo de la transmitividad respecto a L=%lf para <-ln T>=%lf' \n",Lsmall,logSmall);
     fprintf(graf1, "set xlabel 'ln T' \n");
     fprintf(graf1, "set ylabel 'P(ln T)' \n");
     fprintf(graf1, "plot '%s' u 1:2 w boxes\n", n_arch2);
@@ -574,7 +574,7 @@ void creaplt_probabilidades_T(char *n_arch1,double TBig,double logparaTBig, char
     FILE *graf1;
     double s=logparaTBig;
     graf1=fopen("distribucion_T_Big_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TBig);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TBig);
     fprintf(graf1, "set xlabel 'T' \n");
     fprintf(graf1, "set ylabel 'P(T)' \n");
     fprintf(graf1, "C=0.3\n");//PARA EL FIT
@@ -585,7 +585,7 @@ void creaplt_probabilidades_T(char *n_arch1,double TBig,double logparaTBig, char
      fprintf(graf1, "replot f(x)");
 s=logparaTSmall;
  graf1=fopen("distribucion_T_small_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TSmall);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TSmall);
     fprintf(graf1, "set xlabel 'T' \n");
     fprintf(graf1, "set ylabel 'P( T)' \n");
       fprintf(graf1, "C=0.3\n");//PARA EL FIT
@@ -601,7 +601,7 @@ void creaplt_probabilidades_T_paraesoslog(char *n_arch1,double TBig,char *n_arch
     FILE *graf1;
     double s=-log(TBig);
     graf1=fopen("distribucion_T_paralogBig_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TBig);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TBig);
     fprintf(graf1, "set xlabel 'T' \n");
     fprintf(graf1, "set ylabel 'P(T)' \n");
     fprintf(graf1, "C=0.3\n");//PARA EL FIT
@@ -612,7 +612,7 @@ void creaplt_probabilidades_T_paraesoslog(char *n_arch1,double TBig,char *n_arch
      fprintf(graf1, "replot f(x)");
 s=-log(TSmall);
  graf1=fopen("distribucion_T_paralogSmall_SCH.plt","w");
-    fprintf(graf1, "set title 'DistribuciÛn de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TSmall);
+    fprintf(graf1, "set title 'Distribuci√≥n de probabilidad de la transmitividad respecto a L para <T>=%lf' \n",TSmall);
     fprintf(graf1, "set xlabel 'T' \n");
     fprintf(graf1, "set ylabel 'P( T)' \n");
       fprintf(graf1, "C=0.3\n");//PARA EL FIT
@@ -631,7 +631,7 @@ void creaplt_proms(char *n_arch,double L){
     double T;
     graf=fopen("grafico_proms_SCH.plt","w");
     fprintf(graf, "set title 'Promedio de transmitividad respecto a E para L=%lf' \n",L);
-    fprintf(graf, "set xlabel 'EnergÌa incidente' \n");
+    fprintf(graf, "set xlabel 'Energ√≠a incidente' \n");
     fprintf(graf, "set ylabel '<T>' \n");
     fprintf(graf, "unset key \n");
     fprintf(graf, "plot '%s' u 1:2 w lines\n", n_arch);
@@ -642,7 +642,7 @@ void creaplt_proms_log(char *n_arch,double L){
     double T;
     graf=fopen("grafico_proms_log_SCH.plt","w");
     fprintf(graf, "set title 'Promedios de logaritmo de la transmitividad respecto a E para L=%lf' \n",L);
-    fprintf(graf, "set xlabel 'EnergÌa incidente' \n");
+    fprintf(graf, "set xlabel 'Energ√≠a incidente' \n");
     fprintf(graf, "set ylabel '<ln T>' \n");
     fprintf(graf, "plot '%s' u 1:2 w lines\n", n_arch);
 fclose(graf);
@@ -651,9 +651,9 @@ void creaplt_fluctuaciones(char *n_arch,double L){
     FILE *graf;
     double T;
     graf=fopen("grafico_fluctuaciones_SCH.plt","w");
-    fprintf(graf, "set title 'FluctuaciÛn de la transmitividad respecto a E para L=%lf' \n",L);
-    fprintf(graf, "set xlabel 'EnergÌa incidente' \n");
-    fprintf(graf, "set ylabel 'FluctuaciÛn' \n");
+    fprintf(graf, "set title 'Fluctuaci√≥n de la transmitividad respecto a E para L=%lf' \n",L);
+    fprintf(graf, "set xlabel 'Energ√≠a incidente' \n");
+    fprintf(graf, "set ylabel 'Fluctuaci√≥n' \n");
     fprintf(graf, "plot '%s' u 1:2 w lines\n", n_arch);
 fclose(graf);
 }
@@ -768,7 +768,7 @@ double random_Levy_general(double alpha_Levy){
     //printf("theta=%lf \t, W=%lf\t, randomW=%lf, beta=%lf\n",theta,W,randomW, beta);
   //  beta=-log(1-random())+1;//En general
    if (alpha_Levy<1) {
-        beta=1.0;//Queremos que estÈ cargado a un lado
+        beta=1.0;//Queremos que est√© cargado a un lado
         theta_0=PI/2.0;
    }
     else {
