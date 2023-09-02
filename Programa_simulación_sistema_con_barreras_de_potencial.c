@@ -95,7 +95,7 @@ int main (){
     E_0=E;
    escalamiento=1;
    //deltaL=0.2;
-   deltaL=10000;
+   deltaL=100000;
    deltaE=1;
     promlogTsmall=-1.1;
      promlogTbig=-6.37;
